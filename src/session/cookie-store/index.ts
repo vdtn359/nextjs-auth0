@@ -82,4 +82,31 @@ export default class CookieSessionStore implements ISessionStore {
 
     return persistedSession;
   }
+
+  async rollover(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    if (!res) {
+      throw new Error('Response is not available');
+    }
+
+    if (!req) {
+      throw new Error('Request is not available');
+    }
+
+    const { cookieName, cookiePath, cookieLifetime, cookieDomain, cookieSameSite } = this.settings;
+    const cookies = parseCookies(req);
+    const sessionValue = cookies[cookieName];
+
+    if (!sessionValue) {
+      return;
+    }
+
+    setCookie(req, res, {
+      name: cookieName,
+      value: sessionValue,
+      path: cookiePath,
+      maxAge: cookieLifetime,
+      domain: cookieDomain,
+      sameSite: cookieSameSite
+    });
+  }
 }

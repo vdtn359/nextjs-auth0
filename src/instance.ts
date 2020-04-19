@@ -30,6 +30,11 @@ export interface ISignInWithAuth0 {
   handleProfile: (req: NextApiRequest, res: NextApiResponse, options?: ProfileOptions) => Promise<void>;
 
   /**
+   * Rollover user's session
+   */
+  touch: (req: NextApiRequest, res: NextApiResponse) => Promise<void>;
+
+  /**
    * Session handler which returns the current session
    */
   getSession: (req: IncomingMessage) => Promise<ISession | null | undefined>;

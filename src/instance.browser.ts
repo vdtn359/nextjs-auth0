@@ -25,6 +25,9 @@ export default function createDummyBrowserInstance(): ISignInWithAuth0 & { isBro
     },
     tokenCache: (): ITokenCache => {
       throw new Error('The tokenCache method can only be used from the server side');
+    },
+    touch: (): Promise<void> => {
+      throw new Error('The tokenCache method can only be used from the server side');
     }
   };
 }

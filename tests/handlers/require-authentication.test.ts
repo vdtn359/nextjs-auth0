@@ -15,6 +15,7 @@ describe('require authentication handle handler', () => {
 
   const getStore = (session?: ISession): ISessionStore => {
     const store: ISessionStore = {
+      async rollover(): Promise<void> {},
       read(): Promise<ISession | null | undefined> {
         return Promise.resolve(session);
       },

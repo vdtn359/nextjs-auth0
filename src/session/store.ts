@@ -16,4 +16,6 @@ export interface ISessionStore {
    * @param session The session to persist.
    */
   save(req: IncomingMessage, res: ServerResponse, session: ISession): Promise<ISession | null | undefined>;
+
+  rollover(req: IncomingMessage, res: ServerResponse): Promise<void>;
 }

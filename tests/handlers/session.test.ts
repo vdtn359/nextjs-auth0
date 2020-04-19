@@ -9,6 +9,7 @@ describe('session handler', () => {
     const { req } = getRequestResponse();
 
     const store: ISessionStore = {
+      async rollover(): Promise<void> {},
       read(): Promise<ISession | null> {
         return Promise.resolve({
           user: {
